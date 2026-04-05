@@ -8,5 +8,4 @@ submission/
 ├── docs/
 │   ├── api_contract.md    (endpoint documentation)
 │   └── data_contract.md   (upstream data contract)
-└── data/                  ← provided by us
 ```
