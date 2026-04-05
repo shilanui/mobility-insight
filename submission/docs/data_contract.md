@@ -158,3 +158,28 @@ model driver_score {
 
 
 ```
+
+What quality guarantees do you need? (freshness, completeness, null handling)
+
+- I require strong data quality guarantees including low latency (freshness), high completeness, strict null handling, and validation rules.
+  I also handle late and duplicate data through idempotency and monitoring to ensure reliable downstream processing.
+
+How would you handle schema changes from upstream?
+
+- Use schema versioning
+  - Upstream send the version for each time
+- Maintain backward compatibility
+  - Ignore unknown fields
+  - New version when breaking change
+- Add a validation layer like schema
+  - validate payload follow by version
+  - Reject wrong data
+- Transform schema from upstream to internal schema
+
+What happens when upstream data is late or missing?
+
+- Late data is accepted but flagged and may trigger recomputation, while missing data is handled gracefully using partial responses, retries, and monitoring to ensure system reliability
+  Step by
+- Handle late data by flag field with late status
+- Check timestamp and mark something like 'Late data' to dashboard
+- Retry mechanism by event queue like kafka
